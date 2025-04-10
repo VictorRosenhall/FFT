@@ -14,17 +14,17 @@ stream = p.open(format=FORMAT, channels=CHANNELS, rate=RATE,
                 input=True, frames_per_buffer=CHUNK)
 
 # Lista med notnamn (C, C#, D, ..., B)
-NOTE_NAMES = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"]
+Notnamn = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"]
 
 # Skapa Matplotlib-plot
 plt.ion()
 fig, ax = plt.subplots()
 x = np.arange(0, 2 * CHUNK, 2)  
 line, = ax.plot(x, np.random.rand(CHUNK))  
-ax.set_ylim(-30000, 30000)
+ax.set_ylim(-15000, 15000)
 
-# Lägg till text för att visa frekvens och ton
-freq_text = ax.text(0.7, 0.9, "", transform=ax.transAxes, fontsize=12, color="red")
+# Lägg till text för att visa frekpåq1  §´qvens och ton
+freq_text = ax.text(0.7, 0.9, "", transform=ax.transAxes, fontsize=12, color="black")
 
 # Funktion för att konvertera frekvens till notnamn
 def freq_to_note(frequency):
@@ -35,10 +35,10 @@ def freq_to_note(frequency):
     midi_number = round(69 + 12 * np.log2(frequency / 440.0))
 
     # Hitta notnamn och oktav
-    note = NOTE_NAMES[midi_number % 12]  # Notnamn (ex: A, C#, G)
-    octave = (midi_number // 12) - 1  # Oktavnummer
+    note = Notnamn[midi_number % 12]  # Notnamn (ex: A, C#, G)
+    oktav = (midi_number // 12) - 1  # Oktavnummer
 
-    return f"{note}{octave}"
+    return f"{note}{oktav}"
 
 # Realtidsloop
 try:
