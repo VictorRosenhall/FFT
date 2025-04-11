@@ -13,7 +13,7 @@ p = pyaudio.PyAudio()
 stream = p.open(format=FORMAT, channels=CHANNELS, rate=RATE,
                 input=True, frames_per_buffer=CHUNK)
 
-# Lista med notnamn (C, C#, D, ..., B)
+# Lista med notnamn
 Notnamn = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"]
 
 # Skapa Matplotlib-plot
@@ -21,9 +21,9 @@ plt.ion()
 fig, ax = plt.subplots()
 x = np.arange(0, 2 * CHUNK, 2)  
 line, = ax.plot(x, np.random.rand(CHUNK))  
-ax.set_ylim(-15000, 15000)
+ax.set_ylim(-10000, 10000)
 
-# Lägg till text för att visa frekpåq1  §´qvens och ton
+# Lägg till text för att visa frekvens ocg ton
 freq_text = ax.text(0.7, 0.9, "", transform=ax.transAxes, fontsize=12, color="black")
 
 # Funktion för att konvertera frekvens till notnamn
