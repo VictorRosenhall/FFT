@@ -30,8 +30,8 @@ plt.ion()
 fig, ax = plt.subplots()
 x = np.fft.rfftfreq(CHUNK, d=1/RATE)  # Skapa frekvensaxel för FFT
 line, = ax.plot(x, np.zeros_like(x))  # Skapa en tom linje som uppdateras
-ax.set_xlim(0, RATE / 2)  # Begränsa x-axeln till Nyquist-frekvensen (hälften av samplingsfrekvensen)
-ax.set_ylim(0, 5000)  # Amplitudgränser (kan justeras beroende på mikrofonkänslighet)
+ax.set_xlim(0, RATE / 20)  # Begränsa x-axeln till Nyquist-frekvensen (hälften av samplingsfrekvensen)
+ax.set_ylim(0, 100000)  # Amplitudgränser (kan justeras beroende på mikrofonkänslighet)
 ax.set_xlabel("Frekvens (Hz)")
 ax.set_ylabel("Amplitud")
 ax.set_title("Frekvensspektrum i realtid")
