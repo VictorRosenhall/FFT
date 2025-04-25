@@ -1,3 +1,4 @@
+# Bibliotek
 import pyaudio
 import numpy as np
 import matplotlib.pyplot as plt
@@ -21,10 +22,10 @@ while True:
         print("Fel, skriv ett positivt heltal mellan 1 och 20000")
 
 while True:
-    usr_input_2 = input("Ska lågpassfiltret vara på?")
+    usr_input_2 = input("Ska lågpassfiltret vara på? ")
     try:
         lowpass_choice = str(usr_input_2)
-        if lowpass_choice == "ja" or "nej":
+        if lowpass_choice in ["ja", "nej"]:
            break
         else:   
             print("Ogiltigt svar, välj ja eller nej")
@@ -52,8 +53,8 @@ def freq_to_note_transp(frequency):
     oktav = (midi_number // 12) - 1
     return f"Transponerad ton: {note}{oktav}"
 
-# low-pass
-def lowpass(data, alpha=0.05):
+# low-pass filter
+def lowpass(data, alpha=0.1):
     if usr_input_2 == "ja":
         filtered = data
         filtered = np.zeros_like(data)
@@ -69,7 +70,7 @@ p = pyaudio.PyAudio()
 stream = p.open(format=FORMAT, channels=CHANNELS, rate=RATE,
                 input=True, frames_per_buffer=CHUNK)
 
-# Förbereda plot
+# Förbered plot
 plt.ion()
 fig, ax = plt.subplots()
 x = np.fft.rfftfreq(CHUNK, d=1/RATE)
