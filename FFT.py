@@ -80,9 +80,9 @@ def lowpass(data, alpha=0.1):
     if usr_input_2 == "ja":
         filtered = data
         filtered = np.zeros_like(data) # Initierar en array för det filtrerade ljudet
-        filtered[0] = data[0]
-        for i in range(1, len(data)):
-           filtered[i] = alpha * data[i] + (1 - alpha) * filtered[i - 1]
+        filtered[0] = data[0] #Första värdet sätts till originalets första värde
+        for i in range(1, len(data)): # Loopa genom resten av data
+           filtered[i] = alpha * data[i] + (1 - alpha) * filtered[i - 1] # Blandar nuvarande värde med föregående filtrerade värde
         return filtered
     else:
         return data
@@ -95,7 +95,7 @@ stream = p.open(format=FORMAT, channels=CHANNELS, rate=RATE,
 # Förbereder plot
 plt.ion()
 fig, ax = plt.subplots()
-x = np.fft.rfftfreq(CHUNK, d=1/RATE)
+x = np.fft.rfftfreq(CHUNK, d=1/RATE) # Skapar en array med frekvenser för FFT baserat på chunkstorlek och samplingsfrekvens
 line, = ax.plot(x, np.zeros_like(x))
 ax.set_xlim(0, max_freq)
 ax.set_ylim(-100, 100)  # dB-skala
